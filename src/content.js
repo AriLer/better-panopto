@@ -134,7 +134,7 @@ function initExtension() {
     const leftPaneRect = leftPane.getBoundingClientRect()
     let newWidth = e.clientX - leftPaneRect.left
 
-    const minWidth = 200
+    const minWidth = window.innerWidth * 0.2
     const maxWidth = window.innerWidth * 0.5 // Capped at a maximum of 50% screen width
 
     if (newWidth < minWidth) newWidth = minWidth

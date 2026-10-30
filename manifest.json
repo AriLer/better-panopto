@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "My Headless JS Extension",
+  "name": "Panopto plus",
   "version": "1.0.0",
   "background": {
     "service_worker": "src/background.js",

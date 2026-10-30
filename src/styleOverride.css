@@ -2,6 +2,10 @@
    Panopto Custom Resizer & Layout Styles
    ========================================== */
 
+#logoContainer {
+  flex-grow: 1 !important;
+}
+
 /* Main Layout Flex Container Setup */
 #viewerContent {
   display: flex !important;
@@ -9,6 +13,7 @@
   width: 100% !important;
   box-sizing: border-box !important;
   padding: 5px;
+  height: 100%;
   background-color: #e9edf0;
 }
 
@@ -88,15 +93,25 @@
   box-shadow: none !important;
   /* padding-bottom: 10px !important; */
 }
-#thumbnailList::-webkit-scrollbar-track {
-  background: red;
-}
 
 /* Other non-player elements in leftPane respect width */
 #leftPane #eventTabPanes,
 #leftPane #searchTabPane,
 #leftPane #contentsTabPane {
   width: var(--left-pane-width, 460px) !important;
+}
+
+#contentsTabPane.event-tab-pane {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#contentsTabPane::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+#contentsTabPane::-webkit-scrollbar-thumb {
+  background: #b2b5bc;
+  border-radius: 3px;
 }
 
 /* Right Main Content Area Flex Growth & Stream Layouts */
@@ -122,7 +137,7 @@
   background-color: #e9edf0 !important;
 }
 #rightPlayersContainer {
-  margin-bottom: 8px !important;
+  margin-bottom: 10px !important;
 }
 #playControlsWrapper {
   border-radius: 15px !important;
@@ -204,4 +219,18 @@
 
 #thumbnailList {
   width: 100% !important;
+}
+
+#dockedCaption {
+  border: none !important;
+  background-color: transparent !important;
+  color: #272727 !important;
+}
+
+#elapsedBar {
+  background-color: #19274a !important;
+}
+
+#captionsButton.transport-button.clicked.safety-text {
+  color: #19274a !important;
 }

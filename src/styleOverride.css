@@ -10,20 +10,64 @@
   box-sizing: border-box !important;
 }
 
-/* Left Sidebar Panel Sizing & Variable Binding */
+/* Left Sidebar Panel: Setup as a Flex Column filling 100% height */
 #leftPane {
+  display: flex !important;
+  flex-direction: column !important;
   flex: 0 0 auto !important;
   max-width: none !important;
   width: var(--left-pane-width, 460px) !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+/* Player Container & Elements: Width follows variable, height follows aspect-ratio calc */
+#leftPlayerContainer,
+#leftPane #primaryPlayer,
+#leftPane #primaryScreen:not(.roaming) {
+  width: var(--left-pane-width, 460px) !important;
+  height: calc(
+    var(--left-pane-width, 460px) * var(--video-ratio, 0.5625)
+  ) !important; /* Default 16:9 ratio (9/16 = 0.5625) */
+  flex: 0 0 auto !important;
 }
 
 #leftPlayerContainer {
   position: relative;
 }
 
-#leftPane #leftPlayerContainer,
-#leftPane #primaryPlayer,
-#leftPane #primaryScreen:not(.roaming),
+/* Tab headers (small fixed header bar) */
+#leftPane #primaryTabHeaders {
+  flex: 0 0 auto !important;
+}
+
+/* Aside & Event Tabs: Take up all remaining vertical space and shrink/grow */
+#leftPane aside[role='complementary'] {
+  flex: 1 1 0% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+#eventTabs {
+  flex: 1 1 0% !important;
+  height: auto !important;
+  display: flex !important;
+  flex-direction: row !important;
+  min-height: 0 !important;
+}
+
+#leftPane .event-tab-pane,
+#leftPane .event-tab-scroll-pane {
+  max-height: none !important;
+  height: auto !important;
+  flex: 1 1 0% !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+}
+
+/* Other non-player elements in leftPane respect width */
 #leftPane #eventTabPanes,
 #leftPane #searchTabPane,
 #leftPane #contentsTabPane {
@@ -65,7 +109,7 @@
 #primaryPlayer.roaming {
   left: 0 !important;
   top: 0 !important;
-  height: 100% !important;
+  height: 30% !important;
   width: 100% !important;
 }
 

@@ -1,0 +1,102 @@
+/* ==========================================
+   Panopto Custom Resizer & Layout Styles
+   ========================================== */
+
+/* Main Layout Flex Container Setup */
+#viewerContent {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Left Sidebar Panel Sizing & Variable Binding */
+#leftPane {
+  flex: 0 0 auto !important;
+  max-width: none !important;
+  width: var(--left-pane-width, 460px) !important;
+}
+
+#leftPlayerContainer {
+  position: relative;
+}
+
+#leftPane #leftPlayerContainer,
+#leftPane #primaryPlayer,
+#leftPane #primaryScreen:not(.roaming),
+#leftPane #eventTabPanes,
+#leftPane #searchTabPane,
+#leftPane #contentsTabPane {
+  width: var(--left-pane-width, 460px) !important;
+}
+
+/* Right Main Content Area Flex Growth & Stream Layouts */
+#viewerContent > main {
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
+  width: auto !important;
+  max-width: none !important;
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+}
+
+#rightPlayersContainer {
+  position: relative !important;
+  width: 100% !important;
+}
+
+#primaryScreen {
+  width: 100% !important;
+  height: 100% !important;
+  top: 0 !important;
+  left: 0 !important;
+  margin: 0 !important;
+  position: relative !important;
+}
+
+#primaryPlayer {
+  position: absolute !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/* Roaming Mode Adjustments for Primary Player/Screen */
+#primaryPlayer.roaming {
+  left: 0 !important;
+  top: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/* Secondary Stream & Content Containers */
+#secondaryScreen {
+  width: 100% !important;
+  height: 100% !important;
+  left: 0 !important;
+  top: 0 !important;
+  margin: 0 !important;
+}
+
+.secondary-content.object-video {
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#viewerContent > main .secondaryPlayer:not(.roaming) {
+  position: relative !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+#viewerContent > main .secondaryPlayer.roaming {
+  width: 100% !important;
+  top: 0 !important;
+  height: 100% !important;
+  position: relative !important;
+}
+
+#thumbnailList {
+  width: 100% !important;
+}

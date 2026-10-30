@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "My Headless JS Extension",
+  "version": "1.0.0",
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://tau.cloud.panopto.eu/Panopto/Pages/*"],
+      "js": ["src/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": ["storage", "tabs"]
+}

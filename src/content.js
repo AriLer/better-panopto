@@ -82,19 +82,20 @@ function initExtension() {
   Object.assign(resizer.style, {
     width: '6px',
     cursor: 'col-resize',
-    backgroundColor: '#ccc',
-    height: '100%',
+    backgroundColor: '#b2b5bc',
+    height: '99%',
     position: 'absolute',
     top: '0',
-    right: '0',
+    right: '-1rem',
     zIndex: '9999',
+    borderRadius: '5px',
     userSelect: 'none',
     transition: 'background-color 0.2s',
   })
 
   resizer.addEventListener(
     'mouseenter',
-    () => (resizer.style.backgroundColor = '#2196F3'),
+    () => (resizer.style.backgroundColor = '#8a9dad'),
   )
   resizer.addEventListener(
     'mouseleave',

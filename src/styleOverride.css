@@ -2,6 +2,11 @@
    Panopto Custom Resizer & Layout Styles
    ========================================== */
 
+#viewer.viewer {
+  display: flex;
+  flex-direction: column;
+}
+
 #logoContainer {
   flex-grow: 1 !important;
 }
@@ -15,6 +20,7 @@
   padding: 5px;
   height: 100%;
   background-color: #e9edf0;
+  overflow-y: hidden;
 }
 
 /* Left Sidebar Panel: Setup as a Flex Column filling 100% height */
@@ -68,13 +74,53 @@
   min-height: 0 !important;
 }
 
+#transcriptTabPane {
+  .event-tab-scroll-pane::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+
+  .event-tab-list {
+    padding-left: 0;
+    padding-right: 5px;
+  }
+
+  .index-event {
+    padding: 8px 2px 5px 1px !important;
+    border-radius: 5px;
+  }
+  .index-event.highlighted {
+    background-color: #d2d8db !important;
+  }
+}
+
+#transcriptPaneHeader {
+  margin-bottom: 0.5rem;
+
+  .css-b93d1p {
+    background-color: #d8dde0;
+    padding-right: 2rem;
+    padding-left: 7px;
+    border: 1px solid #d0d8dd;
+  }
+}
+
 #leftPane .event-tab-pane,
 #leftPane .event-tab-scroll-pane {
   max-height: none !important;
   height: auto !important;
   flex: 1 1 0% !important;
   min-height: 0 !important;
-  overflow-y: auto !important;
+  padding-top: 10px;
+  height: 100% !important;
+  width: 100% !important;
+
+  .event-overlay {
+    background-color: transparent;
+  }
+}
+
+#leftPane .event-tab-scroll-pane {
+  padding-top: 0px;
 }
 
 #searchRegion {
@@ -131,6 +177,13 @@
   border-radius: 1rem;
 }
 
+#rightPane {
+  height: 100% !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 #rightPane,
 #thumbnailList,
 #rightPlayersContainer {
@@ -142,6 +195,7 @@
 #playControlsWrapper {
   border-radius: 15px !important;
   background-color: white !important;
+  margin-bottom: 5px;
 }
 .event-tab-header.accented-tab {
   padding: 4px 15px !important;
@@ -219,6 +273,7 @@
 
 #thumbnailList {
   width: 100% !important;
+  padding-top: 0 !important;
 }
 
 #dockedCaption {

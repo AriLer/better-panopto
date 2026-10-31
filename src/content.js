@@ -83,7 +83,7 @@ function initExtension() {
     width: '6px',
     cursor: 'col-resize',
     backgroundColor: '#b2b5bc',
-    height: '99%',
+    height: '100%',
     position: 'absolute',
     top: '0',
     right: '-1rem',

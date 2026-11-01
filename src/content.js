@@ -47,9 +47,34 @@ function performBackgroundAction(divElement) {
 
 function initExtension() {
   const viewerContent = document.getElementById('viewerContent')
+  // const minWidth = window.innerWidth * 0.2
   const leftPane = document.getElementById('leftPane')
 
   if (!viewerContent || !leftPane) return
+
+  // Check if target elements exist
+  // Check if target elements exist
+  const secondaryContent = document.querySelector('.secondaryContent')
+  const leftPlayerContainer = document.getElementById('leftPlayerContainer')
+
+  if (secondaryContent && leftPlayerContainer) {
+    // Use a dataset attribute flag to ensure this swap happens ONLY ONCE permanently
+    if (
+      leftPlayerContainer.dataset.swapped !== 'true' &&
+      secondaryContent.children.length === 0
+    ) {
+      leftPlayerContainer.dataset.swapped = 'true' // Mark as swapped so it never loops again
+
+      swapElements(leftPlayerContainer, secondaryContent)
+
+      const newWidth = `${window.innerWidth * 0.2}px`
+      viewerContent.style.setProperty('--left-pane-width', newWidth)
+      leftPane.style.width = newWidth
+      // --------------------------------------------------
+
+      window.dispatchEvent(new Event('resize'))
+    }
+  }
 
   const isMainComponentChild = leftPane.closest('#mainComponent') !== null
   const existingResizer = document.getElementById('custom-resizer-handle')
@@ -204,7 +229,6 @@ globalObserver.observe(document.body, {
   subtree: true,
   attributes: true,
 })
-
 if (
   document.readyState === 'complete' ||
   document.readyState === 'interactive'

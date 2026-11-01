@@ -32,7 +32,6 @@
   width: var(--left-pane-width, 460px) !important;
   height: 100% !important;
   box-sizing: border-box !important;
-  margin-right: 2rem;
   overflow: visible !important;
   gap: 10px;
   margin-right: 10px;
@@ -66,6 +65,7 @@
   min-height: 0 !important;
   overflow: hidden !important;
 }
+
 #eventTabs {
   flex: 1 1 0% !important;
   height: auto !important;
@@ -75,13 +75,35 @@
 }
 
 #transcriptTabPane {
-  .event-tab-scroll-pane::-webkit-scrollbar-track {
-    background: transparent !important;
-  }
-
   .event-tab-list {
     padding-left: 0;
     padding-right: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  @supports (scrollbar-width: thin) {
+    .event-tab-scroll-pane {
+      scrollbar-width: thin;
+      scrollbar-color: #8b9dad #d8dde0;
+    }
+  }
+
+  @supports not (scrollbar-width: thin) {
+    .event-tab-scroll-pane::-webkit-scrollbar {
+      width: 8px;
+    }
+    .event-tab-scroll-pane::-webkit-scrollbar-track {
+      background: #d8dde0;
+      border-radius: 10px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+    .event-tab-scroll-pane::-webkit-scrollbar-thumb {
+      background: #8b9dad;
+      border-radius: 10px;
+    }
   }
 
   .index-event {
@@ -107,11 +129,8 @@
 #leftPane .event-tab-pane,
 #leftPane .event-tab-scroll-pane {
   max-height: none !important;
-  height: auto !important;
   flex: 1 1 0% !important;
   min-height: 0 !important;
-  padding-top: 10px;
-  height: 100% !important;
   width: 100% !important;
 
   .event-overlay {
@@ -119,8 +138,14 @@
   }
 }
 
+#leftPane .event-tab-pane {
+  height: 100% !important;
+  padding-top: 10px;
+}
+
 #leftPane .event-tab-scroll-pane {
   padding-top: 0px;
+  height: auto !important;
 }
 
 #searchRegion {
@@ -135,9 +160,8 @@
   }
 }
 
-#thumbnailList {
-  box-shadow: none !important;
-  /* padding-bottom: 10px !important; */
+#transportControls {
+  border-left: none !important;
 }
 
 /* Other non-player elements in leftPane respect width */
@@ -175,6 +199,7 @@
 
 #copyrightNoticeContainer {
   border-radius: 1rem;
+  height: 100% !important;
 }
 
 #rightPane {
@@ -185,35 +210,36 @@
 }
 
 #rightPane,
-#thumbnailList,
 #rightPlayersContainer {
   background-color: #e9edf0 !important;
-}
-#rightPlayersContainer {
-  margin-bottom: 10px !important;
-}
-#playControlsWrapper {
-  border-radius: 15px !important;
-  background-color: white !important;
-  margin-bottom: 5px;
-}
-.event-tab-header.accented-tab {
-  padding: 4px 15px !important;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  /* justify-content: center; */
-  border-top-right-radius: 8px !important;
-  border-bottom-right-radius: 8px !important;
-  border-left: 0 !important;
-}
-.event-tab-header.accented-tab.selected {
-  background-color: #19274a !important;
 }
 
 #rightPlayersContainer {
   position: relative !important;
   width: 100% !important;
+  margin-bottom: 10px !important;
+  background-color: #e9edf0 !important;
+}
+
+#playControlsWrapper {
+  border-radius: 15px !important;
+  background-color: white !important;
+  margin-bottom: 5px;
+  border: 1px solid #9f9f9f80 !important;
+}
+
+.event-tab-header.accented-tab {
+  padding: 4px 15px !important;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+  border-left: 0 !important;
+}
+
+.event-tab-header.accented-tab.selected {
+  background-color: #19274a !important;
 }
 
 #primaryScreen {
@@ -235,6 +261,7 @@
 .video-js {
   background-color: #e9edf0;
 }
+
 /* Roaming Mode Adjustments for Primary Player/Screen */
 #primaryPlayer.roaming {
   left: 0 !important;
@@ -274,6 +301,8 @@
 #thumbnailList {
   width: 100% !important;
   padding-top: 0 !important;
+  box-shadow: none !important;
+  background-color: #e9edf0 !important;
 }
 
 #dockedCaption {
@@ -288,4 +317,18 @@
 
 #captionsButton.transport-button.clicked.safety-text {
   color: #19274a !important;
+}
+
+/* Single Video adjustments */
+
+#rightPlayersContainer > .secondaryPlayer {
+  max-height: unset !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: transparent !important;
+
+  #leftPlayerContainer {
+    width: 100% !important;
+    height: 100% !important;
+  }
 }

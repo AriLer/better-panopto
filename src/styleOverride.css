@@ -105,10 +105,15 @@
       border-radius: 10px;
     }
   }
+}
 
+#contentsTabPane {
   .index-event {
     padding: 8px 2px 5px 1px !important;
     border-radius: 5px;
+  }
+  .index-event:hover {
+    background-color: #d2d8db66 !important;
   }
   .index-event.highlighted {
     background-color: #d2d8db !important;
@@ -153,7 +158,7 @@
   border-radius: 20px !important;
   padding: 0 16px !important;
   border-bottom: 0 !important;
-  border: 1px solid #9f9f9f !important;
+  border: 1px solid #9f9f9f60 !important;
 
   #searchInput {
     background: transparent !important;
@@ -199,7 +204,18 @@
 
 #copyrightNoticeContainer {
   border-radius: 1rem;
-  height: 100% !important;
+  height: 50% !important;
+  background: transparent !important;
+  color: black !important;
+  padding-top: 20% !important;
+  position: absolute;
+  z-index: 10000;
+  line-height: 1.5 !important;
+
+  path {
+    stroke: black !important;
+    stroke-width: 3px !important;
+  }
 }
 
 #rightPane {
@@ -225,7 +241,7 @@
   border-radius: 15px !important;
   background-color: white !important;
   margin-bottom: 5px;
-  border: 1px solid #9f9f9f80 !important;
+  border: 1px solid #9f9f9f4f !important;
 }
 
 .event-tab-header.accented-tab {
@@ -311,8 +327,17 @@
   color: #272727 !important;
 }
 
-#elapsedBar {
-  background-color: #19274a !important;
+#positionControl {
+  #positionBar {
+    background-color: #e5e5e5 !important;
+    border: none !important;
+  }
+  #elapsedBar {
+    background-color: #11305f !important;
+    border: 1px solid #11305f !important;
+    transform: translateY(-1px);
+    transform: translateY(-1px);
+  }
 }
 
 #captionsButton.transport-button.clicked.safety-text {

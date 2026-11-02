@@ -1,4 +1,5 @@
 import './styleOverride.css'
+import { handleVideoDownload } from './downloader.js'
 
 // ==========================================
 // 1. Initial Page Scanning & Background Setup
@@ -85,6 +86,36 @@ function initExtension() {
   }
 
   if (existingResizer) return
+
+  const videoElement = leftPlayerContainer.querySelector('video')
+
+  if (videoElement && !document.getElementById('custom-download-btn')) {
+    const downloadBtn = document.createElement('button')
+    downloadBtn.id = 'custom-download-btn'
+    downloadBtn.innerText = 'Download Video'
+
+    // Style the button so it looks clean and fits the UI
+    downloadBtn.style.cssText = `
+      margin: 10px 0;
+      padding: 8px 16px;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      z-index: 100000;
+      position: absolute;
+      left: 2rem;
+      bottom: 2rem;
+    `
+
+    downloadBtn.addEventListener('click', () => {
+      handleVideoDownload(downloadBtn)
+    })
+    // Append the button into the secondary content or right below the player
+    viewerContent.appendChild(downloadBtn)
+  }
 
   // --- Dynamically sync video aspect ratio to CSS variable ---
   const videoEl =

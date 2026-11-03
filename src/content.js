@@ -90,31 +90,23 @@ function initExtension() {
   const videoElement = leftPlayerContainer.querySelector('video')
 
   if (videoElement && !document.getElementById('custom-download-btn')) {
+    const downloadBtnsWrapper = document.createElement('div')
+    downloadBtnsWrapper.classList.add('download-btns-wrapper')
     const downloadBtn = document.createElement('button')
     downloadBtn.id = 'custom-download-btn'
     downloadBtn.innerText = 'Download Video'
 
     // Style the button so it looks clean and fits the UI
-    downloadBtn.style.cssText = `
-      margin: 10px 0;
-      padding: 8px 16px;
-      background-color: #0066cc;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 500;
-      z-index: 100000;
-      position: absolute;
-      left: 2rem;
-      bottom: 2rem;
-    `
+    downloadBtn.classList.add('download-btn')
 
-    downloadBtn.addEventListener('click', () => {
+    downloadBtn.addEventListener('click', (event) => {
+      event.preventDefault()
+      event.stopPropagation()
       handleVideoDownload(downloadBtn)
     })
     // Append the button into the secondary content or right below the player
-    viewerContent.appendChild(downloadBtn)
+    viewerContent.appendChild(downloadBtnsWrapper)
+    downloadBtnsWrapper.appendChild(downloadBtn)
   }
 
   // --- Dynamically sync video aspect ratio to CSS variable ---
@@ -134,29 +126,7 @@ function initExtension() {
   // --- Create the Interactive Resizing Divider Handle ---
   const resizer = document.createElement('div')
   resizer.id = 'custom-resizer-handle'
-
-  Object.assign(resizer.style, {
-    width: '6px',
-    cursor: 'col-resize',
-    backgroundColor: '#b2b5bc',
-    height: '100%',
-    position: 'absolute',
-    top: '0',
-    right: '-1rem',
-    zIndex: '9999',
-    borderRadius: '5px',
-    userSelect: 'none',
-    transition: 'background-color 0.2s',
-  })
-
-  resizer.addEventListener(
-    'mouseenter',
-    () => (resizer.style.backgroundColor = '#8a9dad'),
-  )
-  resizer.addEventListener(
-    'mouseleave',
-    () => (resizer.style.backgroundColor = '#ccc'),
-  )
+  resizer.classList.add('custom-resizer')
 
   if (getComputedStyle(leftPane).position === 'static') {
     leftPane.style.position = 'relative'
@@ -166,11 +136,7 @@ function initExtension() {
   // Strip conflicting inline constraints injected by native scripts on the main container
   function neutralizeMainElement() {
     const mainEl = viewerContent.querySelector('main')
-    if (mainEl) {
-      mainEl.style.width = ''
-      mainEl.style.left = ''
-      mainEl.style.position = 'relative'
-    }
+    if (mainEl) mainEl.classList.add('main-custom-style')
   }
 
   neutralizeMainElement()

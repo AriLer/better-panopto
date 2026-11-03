@@ -150,7 +150,8 @@
 
 #leftPane .event-tab-scroll-pane {
   padding-top: 0px;
-  height: auto !important;
+  overflow-y: scroll !important;
+  height: 100% !important;
 }
 
 #searchRegion {
@@ -356,4 +357,66 @@
     width: 100% !important;
     height: 100% !important;
   }
+}
+
+.main-custom-style {
+  position: relative;
+  top: auto;
+  left: auto;
+}
+
+/* ============================================
+  Custom elements styles (not in original DOM)
+  ============================================= */
+
+.custom-resizer {
+  width: 6px;
+  cursor: col-resize;
+  background-color: #b2b5bc;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: -1rem;
+  z-index: 9999;
+  border-radius: 5px;
+  user-select: none;
+  transition: background-color 0.2s;
+}
+.custom-resizer:hover {
+  background-color: #8a9dad;
+}
+
+.download-btns-wrapper {
+  position: absolute;
+  margin: 10px 0;
+  left: 2rem;
+  bottom: 2rem;
+  z-index: 100000;
+  display: flex;
+}
+
+.download-btn {
+  padding: 8px 16px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.download-btn:disabled {
+  cursor: default;
+}
+
+.cancel-download-btn {
+  border: none;
+  margin-left: 8px;
+  background-color: transparent;
+  padding: 8px 14px;
+  border-radius: 4px;
+  background-color: #dc3545;
+  color: white;
+  cursor: pointer;
+  z-index: 99999;
 }
